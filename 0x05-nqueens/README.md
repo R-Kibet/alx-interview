@@ -1,0 +1,1 @@
+## queen challenge showing moves that wont attack other queens
