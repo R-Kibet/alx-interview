@@ -10,29 +10,18 @@ def rotate_2d_matrix(matrix):
     """
     program that transforms the matrix
     """
-    lft = 0
-    r = len(matrix) - 1
-
-    while lft < r:
-        for i in range(r - 1):
-            top = lft
-            bottom = r
-
-            """save the topleft"""
-            topLeft = matrix[top][lft + i]
-
-            """move bottom left into top left"""
-            matrix[top][lft + i] = matrix[bottom - i][lft]
-
-            """move bottom right into bottom left"""
-            matrix[bottom - i][lft] = matrix[bottom][r - i]
-
-            """move top right to bottom right """
-            matrix[bottom][r - i] = matrix[top + i][r]
-
-            """move top left into top right"""
-            matrix[top + i][r] = topLeft
-
-            """update pointers"""
-            lft += 1
-            r -= 1
+    n = len(matrix)
+    for i in range(int(n / 2)):
+        y = (n - i - 1)
+        for j in range(i, y):
+            x = (n - 1 - j)
+            # current number
+            tmp = matrix[i][j]
+            # change top for left
+            matrix[i][j] = matrix[x][i]
+            # change left for bottom
+            matrix[x][i] = matrix[y][x]
+            # change bottom for right
+            matrix[y][x] = matrix[j][y]
+            # change right for top
+            matrix[j][y] = tmp
